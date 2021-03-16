@@ -1,16 +1,4 @@
 .main-div mat-card
 {
     padding: 500px;
-   
-    align-items: flex-start;
-}
-.login-form {
-    padding: 20px;
-    row-gap: 10px;
-    align-items: flex-end;
-}
-.button{
-    
-
-    justify-items:stretch;
 }

@@ -14,11 +14,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,9 @@ import {MatIconModule} from '@angular/material/icon';
     MatInputModule,
     MatFormFieldModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
