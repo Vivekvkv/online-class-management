@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormField} from '@angular/material/form-field';
+import { AuthService } from '../shared/auth.service';
+
 @Component({
   selector: 'app-register',
   template: `
-  <h1>Hello</h1>
+   <h1>Hello</h1>
 <div>
   <button mat-raised-button (click)="openDialog()">Signup</button>
 
@@ -41,18 +43,19 @@ export class RegisterComponent implements OnInit {
 
 export class DialogView implements OnInit {
   myForm:any = FormGroup;
-  
-  constructor() { }
+  hide = true;
+  constructor(public service:AuthService) { }
 
   ngOnInit() {
 
     this.myForm = new FormGroup({
         'firstName': new FormControl('', Validators.required)
     });
+    
 
 
   }
-  Roles: any = ['Admin', 'Author', 'Reader'];
+  Roles: any = ['Admin', 'Department', 'Faculty','Student'];
   email = new FormControl('',[Validators.required])
   
   getErrorMessage(){

@@ -36,3 +36,88 @@
 
   
 </div>
+
+
+
+
+
+<form [formGroup]="service.form" class="">
+
+  <div class="controles-container">
+      <input type="hidden" formControlName="$key">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" formControlName="firstName" ngModel required>
+        <mat-error>Please Fill First Name</mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" formControlName="lastName" ngModel required>
+        <mat-error>Please Fill Last Name</mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="email" ngModel required>
+        <mat-error *ngIf="service.form.controls['email'].errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="service.form.controls['email'].errors?.email">Please Enter Valid Email</mat-error>
+
+
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Password" [type]="hide ? 'password':'text'" formControlName="password"  required>
+        <mat-error *ngIf="service.form.controls['password'].errors?.required">This field is required</mat-error>
+        <mat-error *ngIf="service.form.controls['password'].errors?.minlength">Minimum 8 cherecter need to create password</mat-error>
+
+      </mat-form-field>
+    
+      <button mat-raised-button type="submit" color="primary" [disabled]="service.form.invalid">Submit</button>
+    
+
+  </div>
+
+</form>
+
+
+
+
+
+
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="service.form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First Name" formControlName="firstName" ngModel required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" formControlName="lastName" ngModel required>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="pat@example.com" ngModel formControl="email" required>
+          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" ngModel required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Choose a role...</mat-label>
+          <mat-select>
+            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <button mat-stroked-button color="accent" class="btn-block">Register</button>
+
+    </form>
+  </mat-card>
+</div>
