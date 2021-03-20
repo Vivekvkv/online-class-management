@@ -53,7 +53,6 @@ export class DialogView implements OnInit {
     });
     
 
-
   }
   Roles: any = ['Admin', 'Department', 'Faculty','Student'];
   email = new FormControl('',[Validators.required])
@@ -65,4 +64,8 @@ export class DialogView implements OnInit {
     }
     return this.email.hasError('email') ? 'Enter valid Email' : '';
   }
+}
+sonu(){
+
+  return"Tere is git error ";
 }
