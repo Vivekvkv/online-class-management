@@ -1,0 +1,580 @@
+[33mcommit 71c6a139c1cc9c75db44b75b791bda0e23f7f285[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Vivekvkv <69642600+Vivekvkv@users.noreply.github.com>
+Date:   Sat Mar 20 13:30:59 2021 +0530
+
+    fsignup
+    
+    su
+
+[1mdiff --git a/Frontend/school-management-system/src/app/app.module.ts b/Frontend/school-management-system/src/app/app.module.ts[m
+[1mindex 5e5e190..c472167 100644[m
+[1m--- a/Frontend/school-management-system/src/app/app.module.ts[m
+[1m+++ b/Frontend/school-management-system/src/app/app.module.ts[m
+[36m@@ -1,101 +1,28 @@[m
+ import { NgModule } from '@angular/core';[m
+ import { BrowserModule } from '@angular/platform-browser';[m
+[31m-import { FormsModule } from '@angular/forms';[m
+[32m+[m[32mimport { FormsModule, ReactiveFormsModule } from '@angular/forms';[m
+ [m
+ import { AppRoutingModule } from './app-routing.module';[m
+ import { AppComponent } from './app.component';[m
+ import { LoginComponent } from './login/login.component';[m
+ import { RegisterComponent, DialogView } from './register/register.component';[m
+[31m-import {MatButtonModule} from '@angular/material/button';[m
+ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';[m
+[31m-import {MatCardModule} from '@angular/material/card';[m
+[31m-import {MatCheckboxModule} from '@angular/material/checkbox';[m
+[31m-import {MatInputModule} from '@angular/material/input';[m
+[31m-import {MatFormFieldModule} from '@angular/material/form-field';[m
+[31m-import {MatToolbarModule} from '@angular/material/toolbar';[m
+[31m-import {MatIconModule} from '@angular/material/icon';[m
+[31m-import {MatDialogModule } from '@angular/material/dialog';[m
+[32m+[m
+ [m
+ import { CommonModule } from '@angular/common';[m
+[31m-import { OverlayModule } from '@angular/cdk/overlay';[m
+[31m-import { CdkTreeModule } from '@angular/cdk/tree';[m
+[31m-import { PortalModule } from '@angular/cdk/portal';[m
+[31m-import { MatAutocompleteModule } from '@angular/material/autocomplete';[m
+[31m-import { MatButtonToggleModule } from '@angular/material/button-toggle';[m
+[31m-import { MatChipsModule } from '@angular/material/chips';[m
+[31m-import { MatRippleModule } from '@angular/material/core';[m
+[31m-import { MatDividerModule } from '@angular/material/divider';[m
+[31m-import { MatExpansionModule } from '@angular/material/expansion';[m
+[31m-import { MatListModule } from '@angular/material/list';[m
+[31m-import { MatMenuModule } from '@angular/material/menu';[m
+[31m-import { MatPaginatorModule } from '@angular/material/paginator';[m
+[31m-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';[m
+[31m-import { MatSelectModule } from '@angular/material/select';[m
+[31m-import { MatSidenavModule } from '@angular/material/sidenav';[m
+[31m-import { MatSnackBarModule } from '@angular/material/snack-bar';[m
+[31m-import { MatSortModule } from '@angular/material/sort';[m
+[31m-import { MatTableModule } from '@angular/material/table';[m
+[31m-import { MatTabsModule } from '@angular/material/tabs';[m
+[31m-import { MatTreeModule } from '@angular/material/tree';[m
+[31m-import { MatBadgeModule } from '@angular/material/badge';[m
+[31m-import { MatGridListModule } from '@angular/material/grid-list';[m
+[31m-import { MatRadioModule } from '@angular/material/radio';[m
+[31m-import { MatDatepickerModule } from '@angular/material/datepicker';[m
+[31m-import { MatTooltipModule } from '@angular/material/tooltip';[m
+[32m+[m
+[32m+[m[32mimport { SignupComponent } from './signup/signup.component';[m
+[32m+[m[32mimport { MaterialModule } from './material/material.module';[m
+ [m
+ [m
+ [m
+ [m
+ const modules = [[m
+[31m-  MatButtonModule,[m
+[31m-  MatFormFieldModule,[m
+[31m-  MatInputModule,[m
+   BrowserModule,[m
+[31m-    AppRoutingModule,[m
+[31m-    MatButtonModule,[m
+[31m-    BrowserAnimationsModule,[m
+[31m-    MatCardModule,[m
+[31m-    MatCheckboxModule,[m
+[31m-    MatInputModule,[m
+[31m-    MatToolbarModule,[m
+[31m-    MatIconModule,[m
+[31m-    MatDialogModule,[m
+[31m-    MatFormFieldModule,[m
+[31m-[m
+[31m-    CdkTreeModule,[m
+[31m-    MatAutocompleteModule,[m
+[31m-    MatButtonModule,[m
+[31m-    MatCardModule,[m
+[31m-    MatCheckboxModule,[m
+[31m-    MatChipsModule,[m
+[31m-    MatDividerModule,[m
+[31m-    MatExpansionModule,[m
+[31m-    MatIconModule,[m
+[31m-    MatInputModule,[m
+[31m-    MatListModule,[m
+[31m-    MatMenuModule,[m
+[31m-    MatProgressSpinnerModule,[m
+[31m-    MatPaginatorModule,[m
+[31m-    MatRippleModule,[m
+[31m-    MatSelectModule,[m
+[31m-    MatSidenavModule,[m
+[31m-    MatSnackBarModule,[m
+[31m-    MatSortModule,[m
+[31m-    MatTableModule,[m
+[31m-    MatTabsModule,[m
+[31m-    MatToolbarModule,[m
+[31m-    MatFormFieldModule,[m
+[31m-    MatButtonToggleModule,[m
+[31m-    MatTreeModule,[m
+[31m-    OverlayModule,[m
+[31m-    PortalModule,[m
+[31m-    MatBadgeModule,[m
+[31m-    MatGridListModule,[m
+[31m-    MatRadioModule,[m
+[31m-    MatDatepickerModule,[m
+[31m-    MatTooltipModule,[m
+[31m-    [m
+[31m-[m
+[32m+[m[32m  ReactiveFormsModule,[m
+[32m+[m[32m  AppRoutingModule,[m
+[32m+[m[32m  BrowserAnimationsModule,[m
+[32m+[m[32m  MaterialModule,[m
+ [m
+ [m
+ ][m
+[36m@@ -109,10 +36,10 @@[m [mconst modules = [[m
+     LoginComponent,[m
+     RegisterComponent,[m
+     DialogView,[m
+[31m-    [m
+[32m+[m[32m    SignupComponent,[m[41m    [m
+   ],[m
+   imports: [...modules],[m
+[31m-  exports: [...modules],[m
+[32m+[m
+ [m
+   providers: [],[m
+   bootstrap: [AppComponent][m
+[1mdiff --git a/Frontend/school-management-system/src/app/material/material.module.ts b/Frontend/school-management-system/src/app/material/material.module.ts[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a927a41[m
+[1m--- /dev/null[m
+[1m+++ b/Frontend/school-management-system/src/app/material/material.module.ts[m
+[36m@@ -0,0 +1,95 @@[m
+[32m+[m[32mimport { NgModule } from '@angular/core';[m
+[32m+[m[32mimport { CommonModule } from '@angular/common';[m
+[32m+[m[32mimport { OverlayModule } from '@angular/cdk/overlay';[m
+[32m+[m[32mimport { CdkTreeModule } from '@angular/cdk/tree';[m
+[32m+[m[32mimport { PortalModule } from '@angular/cdk/portal';[m
+[32m+[m[32mimport { MatAutocompleteModule } from '@angular/material/autocomplete';[m
+[32m+[m[32mimport { MatButtonToggleModule } from '@angular/material/button-toggle';[m
+[32m+[m[32mimport { MatChipsModule } from '@angular/material/chips';[m
+[32m+[m[32mimport { MatRippleModule } from '@angular/material/core';[m
+[32m+[m[32mimport { MatDividerModule } from '@angular/material/divider';[m
+[32m+[m[32mimport { MatExpansionModule } from '@angular/material/expansion';[m
+[32m+[m[32mimport { MatListModule } from '@angular/material/list';[m
+[32m+[m[32mimport { MatMenuModule } from '@angular/material/menu';[m
+[32m+[m[32mimport { MatPaginatorModule } from '@angular/material/paginator';[m
+[32m+[m[32mimport { MatProgressSpinnerModule } from '@angular/material/progress-spinner';[m
+[32m+[m[32mimport { MatSelectModule } from '@angular/material/select';[m
+[32m+[m[32mimport { MatSidenavModule } from '@angular/material/sidenav';[m
+[32m+[m[32mimport { MatSnackBarModule } from '@angular/material/snack-bar';[m
+[32m+[m[32mimport { MatSortModule } from '@angular/material/sort';[m
+[32m+[m[32mimport { MatTableModule } from '@angular/material/table';[m
+[32m+[m[32mimport { MatTabsModule } from '@angular/material/tabs';[m
+[32m+[m[32mimport { MatTreeModule } from '@angular/material/tree';[m
+[32m+[m[32mimport { MatBadgeModule } from '@angular/material/badge';[m
+[32m+[m[32mimport { MatGridListModule } from '@angular/material/grid-list';[m
+[32m+[m[32mimport { MatRadioModule } from '@angular/material/radio';[m
+[32m+[m[32mimport { MatDatepickerModule } from '@angular/material/datepicker';[m
+[32m+[m[32mimport { MatTooltipModule } from '@angular/material/tooltip';[m
+[32m+[m[32mimport {MatCardModule} from '@angular/material/card';[m
+[32m+[m[32mimport {MatCheckboxModule} from '@angular/material/checkbox';[m
+[32m+[m[32mimport {MatInputModule} from '@angular/material/input';[m
+[32m+[m[32mimport {MatFormFieldModule} from '@angular/material/form-field';[m
+[32m+[m[32mimport {MatToolbarModule} from '@angular/material/toolbar';[m
+[32m+[m[32mimport {MatIconModule} from '@angular/material/icon';[m
+[32m+[m[32mimport {MatDialogModule } from '@angular/material/dialog';[m
+[32m+[m[32mimport {MatButtonModule } from '@angular/material/button';[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32mconst modules = [[m
+[32m+[m[32m  MatFormFieldModule,[m
+[32m+[m[32m  MatInputModule,[m
+[32m+[m[32m    MatCardModule,[m
+[32m+[m[32m    MatCheckboxModule,[m
+[32m+[m[32m    MatInputModule,[m
+[32m+[m[32m    MatToolbarModule,[m
+[32m+[m[32m    MatIconModule,[m
+[32m+[m[32m    MatDialogModule,[m
+[32m+[m[32m    MatFormFieldModule,[m
+[32m+[m
+[32m+[m[32m    CdkTreeModule,[m
+[32m+[m[32m    MatAutocompleteModule,[m
+[32m+[m[32m    MatButtonModule,[m
+[32m+[m[32m    MatCardModule,[m
+[32m+[m[32m    MatCheckboxModule,[m
+[32m+[m[32m    MatChipsModule,[m
+[32m+[m[32m    MatDividerModule,[m
+[32m+[m[32m    MatExpansionModule,[m
+[32m+[m[32m    MatIconModule,[m
+[32m+[m[32m    MatInputModule,[m
+[32m+[m[32m    MatListModule,[m
+[32m+[m[32m    MatMenuModule,[m
+[32m+[m[32m    MatProgressSpinnerModule,[m
+[32m+[m[32m    MatPaginatorModule,[m
+[32m+[m[32m    MatRippleModule,[m
+[32m+[m[32m    MatSelectModule,[m
+[32m+[m[32m    MatSidenavModule,[m
+[32m+[m[32m    MatSnackBarModule,[m
+[32m+[m[32m    MatSortModule,[m
+[32m+[m[32m    MatTableModule,[m
+[32m+[m[32m    MatTabsModule,[m
+[32m+[m[32m    MatToolbarModule,[m
+[32m+[m[32m    MatFormFieldModule,[m
+[32m+[m[32m    MatButtonToggleModule,[m
+[32m+[m[32m    MatTreeModule,[m
+[32m+[m[32m    OverlayModule,[m
+[32m+[m[32m    PortalModule,[m
+[32m+[m[32m    MatBadgeModule,[m
+[32m+[m[32m    MatGridListModule,[m
+[32m+[m[32m    MatRadioModule,[m
+[32m+[m[32m    MatDatepickerModule,[m
+[32m+[m[32m    MatTooltipModule,[m
+[32m+[m[41m    [m
+[32m+[m[32m][m
+[32m+[m
+[32m+[m
+[32m+[m[32m@NgModule({[m
+[32m+[m[32m  declarations: [],[m
+[32m+[m[32m  imports: [[m
+[32m+[m[32m    CommonModule,[m
+[32m+[m[32m    ...modules[m
+[32m+[m[32m  ],[m
+[32m+[m
+[32m+[m[32m  exports: [...modules][m
+[32m+[m[32m})[m
+[32m+[m[32mexport class MaterialModule { }[m
+[1mdiff --git a/Frontend/school-management-system/src/app/register/dialog-view.html b/Frontend/school-management-system/src/app/register/dialog-view.html[m
+[1mindex 3b0db5a..b000d58 100644[m
+[1m--- a/Frontend/school-management-system/src/app/register/dialog-view.html[m
+[1m+++ b/Frontend/school-management-system/src/app/register/dialog-view.html[m
+[36m@@ -1,41 +1,47 @@[m
+[31m-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">[m
+[31m-  <mat-card class="box">[m
+[31m-    <mat-card-header>[m
+[31m-      <mat-card-title>Register</mat-card-title>[m
+[31m-    </mat-card-header>[m
+[31m-[m
+[31m-    <form class="exmaple-form" >[m
+[31m-      <mat-card-content>[m
+[31m-        <mat-form-field class="example-full-width">[m
+[31m-          <input matInput placeholder="First Name" formControlName="firstName" ngModel required>[m
+[31m-        </mat-form-field>[m
+[31m-[m
+[31m-        <mat-form-field class="example-full-width">[m
+[31m-          <input matInput placeholder="Last Name" formControlName="lastName" ngModel required>[m
+[31m-        </mat-form-field>[m
+[31m-        [m
+[31m-        <mat-form-field class="example-full-width">[m
+[31m-          <input matInput placeholder="pat@example.com" ngModel formControl="email" required>[m
+[31m-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>[m
+[31m-[m
+[31m-        </mat-form-field>[m
+[31m-[m
+[31m-        <mat-form-field class="example-full-width">[m
+[31m-          <input matInput placeholder="Password" ngModel required>[m
+[31m-        </mat-form-field>[m
+[31m-[m
+[31m-        <mat-form-field class="example-full-width">[m
+[31m-          <mat-label>Choose a role...</mat-label>[m
+[31m-          <mat-select>[m
+[31m-            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}[m
+[31m-            </mat-option>[m
+[31m-          </mat-select>[m
+[31m-        </mat-form-field>[m
+[31m-[m
+[31m-      </mat-card-content>[m
+[31m-[m
+[31m-      <button mat-stroked-button color="accent" class="btn-block">Register</button>[m
+[31m-[m
+[31m-    </form>[m
+[31m-  </mat-card>[m
+[31m-</div>[m
+\ No newline at end of file[m
+[32m+[m[32m  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">[m
+[32m+[m[32m    <mat-card class="box">[m
+[32m+[m[32m      <mat-card-header>[m
+[32m+[m[32m        <mat-card-title>Register</mat-card-title>[m
+[32m+[m[32m      </mat-card-header>[m
+[32m+[m[41m  [m
+[32m+[m[32m      <form [formGroup]="service.form">[m
+[32m+[m[32m        <mat-card-content>[m
+[32m+[m[32m          <mat-form-field class="example-full-width">[m
+[32m+[m[32m            <input matInput placeholder="First Name" formControlName="firstName" ngModel required>[m
+[32m+[m[32m            <mat-error>Please Fill First Name</mat-error>[m
+[32m+[m[32m          </mat-form-field>[m
+[32m+[m[41m  [m
+[32m+[m[32m          <mat-form-field class="example-full-width">[m
+[32m+[m[32m            <input matInput placeholder="Last Name" formControlName="lastName" ngModel required>[m
+[32m+[m[32m            <mat-error>Please Fill Last Name</mat-error>[m
+[32m+[m[32m          </mat-form-field>[m
+[32m+[m[41m          [m
+[32m+[m[32m          <mat-form-field class="example-full-width">[m
+[32m+[m[32m            <input matInput placeholder="Email"  formControlName="email" required>[m
+[32m+[m[32m            <mat-error *ngIf="service.form.controls['email'].errors?.required">This field is required</mat-error>[m
+[32m+[m[32m            <mat-error *ngIf="service.form.controls['email'].errors?.email">Please Enter Valid Email</mat-error>[m
+[32m+[m[41m         [m
+[32m+[m[32m          </mat-form-field>[m
+[32m+[m[41m  [m
+[32m+[m[32m          <mat-form-field class="example-full-width">[m
+[32m+[m[32m            <input matInput placeholder="Password" [type]="hide ? 'password':'text'" formControlName='password' required>[m
+[32m+[m[32m            <mat-error *ngIf="service.form.controls['password'].errors?.required">This field is required</mat-error>[m
+[32m+[m[32m            <mat-error *ngIf="service.form.controls['password'].errors?.minlength">Minimum 8 cherecter need to create password</mat-error>[m
+[32m+[m[41m    [m
+[32m+[m[32m          </mat-form-field>[m
+[32m+[m[41m  [m
+[32m+[m[32m          <mat-form-field class="example-full-width">[m
+[32m+[m[32m            <mat-label>Choose a role...</mat-label>[m
+[32m+[m[32m            <mat-select>[m
+[32m+[m[32m              <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}[m
+[32m+[m[32m              </mat-option>[m
+[32m+[m[32m            </mat-select>[m
+[32m+[m[32m          </mat-form-field>[m
+[32m+[m[41m  [m
+[32m+[m[32m        </mat-card-content>[m
+[32m+[m[41m  [m
+[32m+[m[32m        <button mat-stroked-button color="accent" [disabled]="service.form.invalid" class="btn-block">Register</button>[m
+[32m+[m[41m  [m
+[32m+[m[32m      </form>[m
+[32m+[m[32m    </mat-card>[m
+[32m+[m[32m  </div>[m
+\ No newline at end of file[m
+[1mdiff --git a/Frontend/school-management-system/src/app/register/register.component.css b/Frontend/school-management-system/src/app/register/register.component.css[m
+[1mindex 3437aac..35b76f0 100644[m
+[1m--- a/Frontend/school-management-system/src/app/register/register.component.css[m
+[1m+++ b/Frontend/school-management-system/src/app/register/register.component.css[m
+[36m@@ -89,7 +89,7 @@[m [mbody {[m
+ [m
+ .login-wrapper mat-card-header mat-card-title {[m
+   font-size: 30px;[m
+[31m-  margin: 0;[m
+[32m+[m[32m  padding-bottom: 20px;[m
+ }[m
+ [m
+ .login-wrapper .mat-card {[m
+[1mdiff --git a/Frontend/school-management-system/src/app/register/register.component.html b/Frontend/school-management-system/src/app/register/register.component.html[m
+[1mindex 544d1dd..236f672 100644[m
+[1m--- a/Frontend/school-management-system/src/app/register/register.component.html[m
+[1m+++ b/Frontend/school-management-system/src/app/register/register.component.html[m
+[36m@@ -35,4 +35,89 @@[m
+ [m
+ [m
+   [m
+[32m+[m[32m</div>[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m<form [formGroup]="service.form" class="">[m
+[32m+[m
+[32m+[m[32m  <div class="controles-container">[m
+[32m+[m[32m      <input type="hidden" formControlName="$key">[m
+[32m+[m[32m      <mat-form-field class="example-full-width">[m
+[32m+[m[32m        <input matInput placeholder="First Name" formControlName="firstName" ngModel required>[m
+[32m+[m[32m        <mat-error>Please Fill First Name</mat-error>[m
+[32m+[m[32m      </mat-form-field>[m
+[32m+[m[32m      <mat-form-field class="example-full-width">[m
+[32m+[m[32m        <input matInput placeholder="Last Name" formControlName="lastName" ngModel required>[m
+[32m+[m[32m        <mat-error>Please Fill Last Name</mat-error>[m
+[32m+[m[32m      </mat-form-field>[m
+[32m+[m[32m      <mat-form-field class="example-full-width">[m
+[32m+[m[32m        <input matInput placeholder="Email" formControlName="email" ngModel required>[m
+[32m+[m[32m        <mat-error *ngIf="service.form.controls['email'].errors?.required">This field is required</mat-error>[m
+[32m+[m[32m        <mat-error *ngIf="service.form.controls['email'].errors?.email">Please Enter Valid Email</mat-error>[m
+[32m+[m
+[32m+[m
+[32m+[m[32m      </mat-form-field>[m
+[32m+[m[32m      <mat-form-field class="example-full-width">[m
+[32m+[m[32m        <input matInput placeholder="Password" [type]="hide ? 'password':'text'" formControlName="password"  required>[m
+[32m+[m[32m        <mat-error *ngIf="service.form.controls['password'].errors?.required">This field is required</mat-error>[m
+[32m+[m[32m        <mat-error *ngIf="service.form.controls['password'].errors?.minlength">Minimum 8 cherecter need to create password</mat-error>[m
+[32m+[m
+[32m+[m[32m      </mat-form-field>[m
+[32m+[m[41m    [m
+[32m+[m[32m      <button mat-raised-button type="submit" color="primary" [disabled]="service.form.invalid">Submit</button>[m
+[32m+[m[41m    [m
+[32m+[m
+[32m+[m[32m  </div>[m
+[32m+[m
+[32m+[m[32m</form>[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">[m
+[32m+[m[32m  <mat-card class="box">[m
+[32m+[m[32m    <mat-card-header>[m
+[32m+[m[32m      <mat-card-title>Register</mat-card-title>[m
+[32m+[m[32m    </mat-card-header>[m
+[32m+[m
+[32m+[m[32m    <form [formGroup]="service.form">[m
+[32m+[m[32m      <mat-card-content>[m
+[32m+[m[32m        <mat-form-field class="example-full-width">[m
+[32m+[m[32m          <input matInput placeholder="First Name" formControlName="firstName" ngModel required>[m
+[32m+[m[32m        </mat-form-field>[m
+[32m+[m
+[32m+[m[32m        <mat-form-field class="example-full-width">[m
+[32m+[m[32m          <input matInput placeholder="Last Name" formControlName="lastName" ngModel required>[m
+[32m+[m[32m        </mat-form-field>[m
+[32m+[m[41m        [m
+[32m+[m[32m        <mat-form-field class="example-full-width">[m
+[32m+[m[32m          <input matInput placeholder="pat@example.com" ngModel formControl="email" required>[m
+[32m+[m[32m          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>[m
+[32m+[m
+[32m+[m[32m        </mat-form-field>[m
+[32m+[m
+[32m+[m[32m        <mat-form-field class="example-full-width">[m
+[32m+[m[32m          <input matInput placeholder="Password" ngModel required>[m
+[32m+[m[32m        </mat-form-field>[m
+[32m+[m
+[32m+[m[32m        <mat-form-field class="example-full-width">[m
+[32m+[m[32m          <mat-label>Choose a role...</mat-label>[m
+[32m+[m[32m          <mat-select>[m
+[32m+[m[32m            <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}[m
+[32m+[m[32m            </mat-option>[m
+[32m+[m[32m          </mat-select>[m
+[32m+[m[32m        </mat-form-field>[m
+[32m+[m
+[32m+[m[32m      </mat-card-content>[m
+[32m+[m
+[32m+[m[32m      <button mat-stroked-button color="accent" class="btn-block">Register</button>[m
+[32m+[m
+[32m+[m[32m    </form>[m
+[32m+[m[32m  </mat-card>[m
+ </div>[m
+\ No newline at end of file[m
+[1mdiff --git a/Frontend/school-management-system/src/app/register/register.component.ts b/Frontend/school-management-system/src/app/register/register.component.ts[m
+[1mindex b3c41e2..9e197f2 100644[m
+[1m--- a/Frontend/school-management-system/src/app/register/register.component.ts[m
+[1m+++ b/Frontend/school-management-system/src/app/register/register.component.ts[m
+[36m@@ -2,10 +2,12 @@[m [mimport { Component, OnInit } from '@angular/core';[m
+ import { FormGroup,FormControl, Validators } from '@angular/forms';[m
+ import { MatDialog } from '@angular/material/dialog';[m
+ import { MatFormField} from '@angular/material/form-field';[m
+[32m+[m[32mimport { AuthService } from '../shared/auth.service';[m
+[32m+[m
+ @Component({[m
+   selector: 'app-register',[m
+   template: `[m
+[31m-  <h1>Hello</h1>[m
+[32m+[m[32m   <h1>Hello</h1>[m
+ <div>[m
+   <button mat-raised-button (click)="openDialog()">Signup</button>[m
+ [m
+[36m@@ -41,18 +43,19 @@[m [mexport class RegisterComponent implements OnInit {[m
+ [m
+ export class DialogView implements OnInit {[m
+   myForm:any = FormGroup;[m
+[31m-  [m
+[31m-  constructor() { }[m
+[32m+[m[32m  hide = true;[m
+[32m+[m[32m  constructor(public service:AuthService) { }[m
+ [m
+   ngOnInit() {[m
+ [m
+     this.myForm = new FormGroup({[m
+         'firstName': new FormControl('', Validators.required)[m
+     });[m
+[32m+[m[41m    [m
+ [m
+ [m
+   }[m
+[31m-  Roles: any = ['Admin', 'Author', 'Reader'];[m
+[32m+[m[32m  Roles: any = ['Admin', 'Department', 'Faculty','Student'];[m
+   email = new FormControl('',[Validators.required])[m
+   [m
+   getErrorMessage(){[m
+[1mdiff --git a/Frontend/school-management-system/src/app/shared/auth.service.ts b/Frontend/school-management-system/src/app/shared/auth.service.ts[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1109101[m
+[1m--- /dev/null[m
+[1m+++ b/Frontend/school-management-system/src/app/shared/auth.service.ts[m
+[36m@@ -0,0 +1,31 @@[m
+[32m+[m[32mimport { Injectable } from '@angular/core';[m
+[32m+[m[32mimport { FormControl, FormGroup, Validators } from '@angular/forms';[m
+[32m+[m
+[32m+[m[32m@Injectable({[m
+[32m+[m[32m  providedIn: 'root'[m
+[32m+[m[32m})[m
+[32m+[m[32mexport class AuthService {[m
+[32m+[m
+[32m+[m[32m  constructor() { }[m
+[32m+[m[32m  form:FormGroup = new FormGroup({[m
+[32m+[m[32m    $key: new FormControl(null),[m
+[32m+[m[32m    firstName: new FormControl('',Validators.required),[m
+[32m+[m[32m    lastName: new FormControl('',Validators.required),[m
+[32m+[m[32m    email: new FormControl('',[Validators.required,Validators.email]),[m
+[32m+[m[32m    password: new FormControl('',[Validators.required,Validators.minLength(6)]),[m
+[32m+[m[32m    role: new FormControl('')[m
+[32m+[m
+[32m+[m[32m  });[m
+[32m+[m
+[32m+[m[32m  initializeFormGroup(){[m
+[32m+[m[32m    this.form.setValue({[m
+[32m+[m[32m      $key:null,[m
+[32m+[m[32m      firstName: '',[m
+[32m+[m[32m      lastName: '',[m
+[32m+[m[32m      email: '',[m
+[32m+[m[32m      password: '',[m
+[32m+[m[32m      role: '',[m
+[32m+[m[41m     [m
+[32m+[m[32m    })[m
+[32m+[m[32m  }[m
+[32m+[m[32m}[m
+[1mdiff --git a/Frontend/school-management-system/src/app/signup/signup.component.css b/Frontend/school-management-system/src/app/signup/signup.component.css[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e69de29[m
+[1mdiff --git a/Frontend/school-management-system/src/app/signup/signup.component.html b/Frontend/school-management-system/src/app/signup/signup.component.html[m
+[1mnew file mode 100644[m
+[1mindex 0000000..c9ce9ad[m
+[1m--- /dev/null[m
+[1m+++ b/Frontend/school-management-system/src/app/signup/signup.component.html[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32m<p>signup works!</p>[m
+[1mdiff --git a/Frontend/school-management-system/src/app/signup/signup.component.spec.ts b/Frontend/school-management-system/src/app/signup/signup.component.spec.ts[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2c39790[m
+[1m--- /dev/null[m
+[1m+++ b/Frontend/school-management-system/src/app/signup/signup.component.spec.ts[m
+[36m@@ -0,0 +1,25 @@[m
+[32m+[m[32mimport { ComponentFixture, TestBed } from '@angular/core/testing';[m
+[32m+[m
+[32m+[m[32mimport { SignupComponent } from './signup.component';[m
+[32m+[m
+[32m+[m[32mdescribe('SignupComponent', () => {[m
+[32m+[m[32m  let component: SignupComponent;[m
+[32m+[m[32m  let fixture: ComponentFixture<SignupComponent>;[m
+[32m+[m
+[32m+[m[32m  beforeEach(async () => {[m
+[32m+[m[32m    await TestBed.configureTestingModule({[m
+[32m+[m[32m      declarations: [ SignupComponent ][m
+[32m+[m[32m    })[m
+[32m+[m[32m    .compileComponents();[m
+[32m+[m[32m  });[m
+[32m+[m
+[32m+[m[32m  beforeEach(() => {[m
+[32m+[m[32m    fixture = TestBed.createComponent(SignupComponent);[m
+[32m+[m[32m    component = fixture.componentInstance;[m
+[32m+[m[32m    fixture.detectChanges();[m
+[32m+[m[32m  });[m
+[32m+[m
+[32m+[m[32m  it('should create', () => {[m
+[32m+[m[32m    expect(component).toBeTruthy();[m
+[32m+[m[32m  });[m
+[32m+[m[32m});[m
+[1mdiff --git a/Frontend/school-management-system/src/app/signup/signup.component.ts b/Frontend/school-management-system/src/app/signup/signup.component.ts[m
+[1mnew file mode 100644[m
+[1mindex 0000000..61ff93a[m
+[1m--- /dev/null[m
+[1m+++ b/Frontend/school-management-system/src/app/signup/signup.component.ts[m
+[36m@@ -0,0 +1,15 @@[m
+[32m+[m[32mimport { Component, OnInit } from '@angular/core';[m
+[32m+[m
+[32m+[m[32m@Component({[m
+[32m+[m[32m  selector: 'app-signup',[m
+[32m+[m[32m  templateUrl: './signup.component.html',[m
+[32m+[m[32m  styleUrls: ['./signup.component.css'][m
+[32m+[m[32m})[m
+[32m+[m[32mexport class SignupComponent implements OnInit {[m
+[32m+[m
+[32m+[m[32m  constructor() { }[m
+[32m+[m
+[32m+[m[32m  ngOnInit(): void {[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m}[m
