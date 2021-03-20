@@ -55,17 +55,5 @@ export class DialogView implements OnInit {
 
   }
   Roles: any = ['Admin', 'Department', 'Faculty','Student'];
-  email = new FormControl('',[Validators.required])
-  
-  getErrorMessage(){
-    if(this.email.hasError('required'))
-    {
-      return "You must Enter Email Addres!!";
-    }
-    return this.email.hasError('email') ? 'Enter valid Email' : '';
-  }
-}
-sonu(){
 
-  return"Tere is git error ";
 }
