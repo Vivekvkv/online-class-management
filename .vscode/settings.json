@@ -1,0 +1,11 @@
+{
+    "liveServer.settings.CustomBrowser": "chrome",
+    "liveServer.settings.host": "localhost:4200",
+    "liveServer.settings.proxy": {
+        "proxyUri": "http://localhost:4200/"
+    },
+    "liveServer.settings.root": "/localhost:4200/",
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
+    "python.autoComplete.addBrackets": true,
+    "emmet.showSuggestionsAsSnippets": true
+}
