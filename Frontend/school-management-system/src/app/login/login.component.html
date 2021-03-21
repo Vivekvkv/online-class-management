@@ -1,25 +1,30 @@
 <div  class='main-div' >
       
     <mat-card class="box" >
-    
-      <mat-card-title >Login</mat-card-title>
+     <mat-label class="login">Login</mat-label>
          
-        
         <form  class="login-form">
-            <mat-form-field  >
-              <mat-label>Username</mat-label>
+            <mat-form-field appearance="fill" >
+              <mat-label class="username">Username</mat-label>
+              <mat-icon matSuffix>account_circle</mat-icon>
               <input matInput  placeholder="Username" >
+              
             </mat-form-field>
           
-            <mat-form-field  >
-                <mat-label>Password</mat-label>
-                
-                <input matInput type="password" placeholder="password"  >
+            <mat-form-field appearance="fill" >
+              <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                       </button>
+             
+               
             </mat-form-field>
             
-              <button mat-raised-button color='red' type="submit">Login</button>
+              
             
           </form>
+          <button mat-stroked-button color='primary' size='50px' class="loginbutton" type="submit">Login</button>
           
     </mat-card>
     
