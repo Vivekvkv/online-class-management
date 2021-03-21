@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 
 import { SignupComponent } from './signup/signup.component';
 import { MaterialModule } from './material/material.module';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -36,7 +37,8 @@ const modules = [
     LoginComponent,
     RegisterComponent,
     DialogView,
-    SignupComponent,    
+    SignupComponent,
+    HomeComponent,    
   ],
   imports: [...modules],
 
