@@ -1,12 +1,12 @@
 .main-div
-{   
-    padding-top: 20px;
+{   padding-top: 20px;
     padding-inline-start:500px;
     box-shadow:rgb(12, 12, 12) ;
 }
 .login{
   font-size: 30px;
-   padding:50px;
+  border-bottom: solid green;
+   padding-left: 50px;
   
 }
 .username , .password {
@@ -23,6 +23,7 @@
    width: 100%;
   -ms-flex-align: center;
   
+  
   padding: 60px 50px 60px 50px;
   
   background: rgb(252, 230, 248);
@@ -36,6 +37,7 @@
 }
 .mat-form-field {
   margin-right: 8px;
+  
   text-align: center;
   position: center;
   

@@ -19,16 +19,7 @@ export class LoginComponent  {
   }
 }
 
-@Component({
-  selector: 'app-login',
-  templateUrl: 'snack-bar-component-example-snack.html',
-  styles: [`
-    .example-pizza-party {
-      color: hotpink;
-    }
-  `],
-})
-export class LoginComponeny {}
+
 
 
 
