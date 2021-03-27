@@ -7,7 +7,6 @@ import { AuthService } from '../shared/auth.service';
 @Component({
   selector: 'app-register',
   template: `
-   <h1>Hello</h1>
 <div>
   <button mat-raised-button (click)="openDialog()">Signup</button>
 
