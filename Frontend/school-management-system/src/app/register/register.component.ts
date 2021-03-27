@@ -7,9 +7,52 @@ import { AuthService } from '../shared/auth.service';
 @Component({
   selector: 'app-register',
   template: `
-<div>
-  <button mat-raised-button (click)="openDialog()">Signup</button>
-
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-header>
+  
+      <form [formGroup]="service.form">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="First Name" formControlName="firstName" ngModel required>
+            <mat-error>Please Fill First Name</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Last Name" formControlName="lastName" ngModel required>
+            <mat-error>Please Fill Last Name</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Email"  formControlName="email" required>
+            <mat-error *ngIf="service.form.controls['email'].errors?.required">This field is required</mat-error>
+            <mat-error *ngIf="service.form.controls['email'].errors?.email">Please Enter Valid Email</mat-error>
+         
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" [type]="hide ? 'password':'text'" formControlName='password' required>
+            <mat-error *ngIf="service.form.controls['password'].errors?.required">This field is required</mat-error>
+            <mat-error *ngIf="service.form.controls['password'].errors?.minlength">Minimum 8 cherecter need to create password</mat-error>
+    
+          </mat-form-field>
+  
+          <mat-form-field class="example-full-width">
+            <mat-label>Choose a role...</mat-label>
+            <mat-select>
+              <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+        </mat-card-content>
+  
+        <button mat-stroked-button color="accent" [disabled]="service.form.invalid" class="btn-block">Register</button>
+  
+      </form>
+    </mat-card>
   </div>
   
   `,
@@ -17,17 +60,14 @@ import { AuthService } from '../shared/auth.service';
 })
 export class RegisterComponent implements OnInit {
   ravi:string="123";
-  constructor(private dialog:MatDialog) { }
+  constructor(private dialog:MatDialog, public service:AuthService) { }
 
   ngOnInit(): void {
   }
-  openDialog(){
 
-    const dialogRef = this.dialog.open(DialogView);
-    var data = dialogRef.afterClosed().subscribe(() => this.ravi);
-    console.log(data)
-    
-    }
+  Roles: any = ['Admin', 'Department', 'Faculty','Student'];
+  hide = true;
+
     
 
   }
