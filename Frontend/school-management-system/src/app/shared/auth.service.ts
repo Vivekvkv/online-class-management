@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
   form:FormGroup = new FormGroup({
     $key: new FormControl(null),
     firstName: new FormControl('',Validators.required),
@@ -28,4 +29,7 @@ export class AuthService {
      
     })
   }
+
+
+
 }
