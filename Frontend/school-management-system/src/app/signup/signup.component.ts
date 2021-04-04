@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { PublicService } from 'src/app/shared/public.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private pService:PublicService) { }
+  msg: any;
   ngOnInit(): void {
+    this.showMessage();
+  }
+
+  showMessage(){
+    this.pService.getMessage().subscribe(data=>{
+      this.msg = data,
+      console.log(this.msg);
+    });
   }
 
 }

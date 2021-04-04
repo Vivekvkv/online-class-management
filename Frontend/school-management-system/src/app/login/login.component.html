@@ -4,14 +4,13 @@
     <mat-card class="box" >
      <mat-label class="login">Login</mat-label>
          
-        <form >
-              <input matInput type="text" class="username" placeholder="Username" >
-              
-                        <input class="password" placeholder="Password" type="text" matInput [type]="hide ? 'password' : 'text'">
+        <form [formGroup]='authService.loginForm'>
+              <input matInput type="text" class="username" placeholder="Username" formControlName="username">          
+              <input  class="password" placeholder="Password" matInput [type]="hide ? 'password' : 'text'" FormControlName="password">
                         
                        
              
-                       <input name="" class="submit" placeholder="Login" type="submit">
+                       <input  class="submit" placeholder="Login" type="submit">
                
 
           </form>
@@ -19,7 +18,6 @@
     
           
 
-          <button mat-stroked-button color="secondary" class='mat-form-field' (click)="openDialog()">New user register here</button>
+<button mat-stroked-button color="secondary" (click)="register()"  class='mat-form-field' >New user register here</button>
           
-
   

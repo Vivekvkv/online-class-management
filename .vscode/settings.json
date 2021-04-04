@@ -7,5 +7,7 @@
     "liveServer.settings.root": "/localhost:4200/",
     "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
     "python.autoComplete.addBrackets": true,
-    "emmet.showSuggestionsAsSnippets": true
+    "emmet.showSuggestionsAsSnippets": true,
+    "python.formatting.provider": "yapf",
+    "git.ignoreLimitWarning": true
 }
