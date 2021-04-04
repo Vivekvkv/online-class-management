@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormGroup,FormControl, Validators, AsyncValidatorFn, ValidationErrors, ValidatorFn,
+  AbstractControl } from '@angular/forms';
+ import { map } from 'rxjs/operators'
+import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormField} from '@angular/material/form-field';
+import { Subscriber, Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { AuthService } from '../shared/auth.service';
-
+import { Signup } from'src/app/shared/signup';
 @Component({
   selector: 'app-register',
   template: `
@@ -13,20 +18,26 @@ import { AuthService } from '../shared/auth.service';
         <mat-card-title>Register</mat-card-title>
       </mat-card-header>
   
-      <form [formGroup]="service.form">
+      <form [formGroup]="service.form" (ngSubmit)='onSubmit()' novalidate >
+      {{ service.form.value | json }}
         <mat-card-content>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username" formControlName="username"  required>
+            <mat-error>Please Fill User Name</mat-error>
+          </mat-form-field>
+  
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="First Name" formControlName="firstName" ngModel required>
+            <input matInput placeholder="First Name" formControlName="first_name"  required>
             <mat-error>Please Fill First Name</mat-error>
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Last Name" formControlName="lastName" ngModel required>
+            <input matInput placeholder="Last Name" formControlName="last_name" required>
             <mat-error>Please Fill Last Name</mat-error>
           </mat-form-field>
           
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email"  formControlName="email" required>
+            <input matInput placeholder="email"  formControlName="email" required>
             <mat-error *ngIf="service.form.controls['email'].errors?.required">This field is required</mat-error>
             <mat-error *ngIf="service.form.controls['email'].errors?.email">Please Enter Valid Email</mat-error>
          
@@ -40,9 +51,9 @@ import { AuthService } from '../shared/auth.service';
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <mat-label>Choose a role...</mat-label>
-            <mat-select>
-              <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+            <mat-label>Choose as role...</mat-label>
+            <mat-select formControlName='roles'>
+              <mat-option  [value]="roles" *ngFor="let roles of Roles">{{roles}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -52,6 +63,8 @@ import { AuthService } from '../shared/auth.service';
         <button mat-stroked-button color="accent" [disabled]="service.form.invalid" class="btn-block">Register</button>
   
       </form>
+
+
     </mat-card>
   </div>
   
@@ -63,11 +76,35 @@ export class RegisterComponent implements OnInit {
   constructor(private dialog:MatDialog, public service:AuthService) { }
 
   ngOnInit(): void {
+    
   }
 
   Roles: any = ['Admin', 'Department', 'Faculty','Student'];
   hide = true;
+  get f (){
+    return this.service.form.controls;
+  }
 
+  onSubmit(){
+    this.service.register(this.service.form.value).subscribe(
+      data => console.log('sucesss', data),
+      error => console.log('error!', error)
+    );
+  }
+  // customAsyncValidator():AsyncValidatorFn{ 
+  //   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> =>{
+  //     return this.service.isExist(control.value).pipe(
+  //       map( res => {
+           
+  //         return null;
+  //                   })
+  //     );
+                      
+  //   }
+
+  //   }
+  
+  
     
 
   }
@@ -95,4 +132,9 @@ export class DialogView implements OnInit {
   }
   Roles: any = ['Admin', 'Department', 'Faculty','Student'];
 
+
+
+
+
+  
 }

@@ -21,7 +21,10 @@ body {
 }
 
 .login-wrapper {
+  
+  margin-left:25%; margin-right:25%;
   height: 100%;
+  
 }
 
 .positronx {
