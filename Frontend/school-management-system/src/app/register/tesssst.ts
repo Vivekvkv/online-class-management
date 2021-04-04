@@ -11,12 +11,12 @@ export interface DialogData {
  */
 @Component({
   selector: 'dialog-overview-example',
-  templateUrl: 'dialog-overview-example.html',
+  templateUrl: 'dialog-view.html',
 })
 export class DialogOverviewExample {
 
-  animal: string;
-  name: string;
+  animal: string='';
+  name: string='';
 
   constructor(public dialog: MatDialog) {}
 
@@ -36,7 +36,7 @@ export class DialogOverviewExample {
 
 @Component({
   selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html',
+  templateUrl: 'dialog-view.html',
 })
 export class DialogOverviewExampleDialog {
 

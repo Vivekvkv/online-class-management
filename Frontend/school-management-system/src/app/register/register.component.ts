@@ -19,7 +19,6 @@ import { Signup } from'src/app/shared/signup';
       </mat-card-header>
   
       <form [formGroup]="service.form" (ngSubmit)='onSubmit()' novalidate >
-      {{ service.form.value | json }}
         <mat-card-content>
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Username" formControlName="username"  required>
