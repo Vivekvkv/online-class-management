@@ -16,13 +16,45 @@ import { Subscriber, Observable } from 'rxjs';
 import { Signup } from'src/app/shared/signup';
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
+  template: `
+     <div  class='main-div' >
+      
+    <mat-card class="box" >
+     <mat-label class="login">Login</mat-label>
+         
+        <form [formGroup]='authService.loginForm'  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <input matInput type="text" class="username"  placeholder="Username or Email" formControlName="username" id="username"
+               autocomplete="off">   
+              <div class="error" 
+              *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Please enter username</div>
+                   
+              <input  class="password" placeholder="Password"  matInput [type]="hide ? 'password' : 'text'" 
+              FormControlName="password" autocomplete="off">
+                         
+              <div class="error" 
+              *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please enter password</div>
+             
+                       <input class="submit" [disabled]="loginForm.invalid"  (ngSubmit)="onSubmit()" 
+                        placeholder="Login" type="submit">
+                        <div class="error" *ngIf="invalidlogin"></div>
+               
+
+          </form>
+          
+    
+          
+
+   <button mat-stroked-button color="secondary" (click)="register()"  class='mat-form-field' >New user register here</button>
+          
+  
+   `,
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit  {
   hide = true;
   loginForm:any=FormGroup;
   invalidlogin:boolean =false; 
+  message:any;  
   durationInSeconds = 5;
   constructor(private _snackBar: MatSnackBar, 
               private formBuilder:FormBuilder, 
@@ -34,26 +66,26 @@ export class LoginComponent implements OnInit  {
              
               ) {}
   
-    ngOnInit(){
+  ngOnInit(){
     this.loginForm = this.formBuilder.group({
       username: ['',Validators.compose([Validators.required])],
       password:['',Validators.required]
-     })
-     }
+    })
+   }
   
 
-   openSnackBar() {
+  openSnackBar() {
     this._snackBar.openFromComponent(RegisterComponent, {
       duration: this.durationInSeconds * 1000,
     });
-    }
+  }
 
-    openDialog(){
+  openDialog(){
     this._dialog.open(RegisterComponent)
     const dialogRef = this._dialog.open(RegisterComponent);
     var data = dialogRef.close()
     
-     }
+  }
 
     register(){
     
@@ -61,15 +93,36 @@ export class LoginComponent implements OnInit  {
     
     }
     onSubmit(){
-      this.service.register(this.service.form.value).subscribe(
-        data => console.log('sucesss', data),
-        error => console.log('error!', error),
-
-      
-    
+      console.log(this.loginForm.value);
+      if (this.loginForm.invalid){
+        return;
       }
+      const loginData = {
+        username:  this.loginForm.controls.username.value,
+        password:  this.loginForm.controls.password.value
+      };
+      this.service.login(loginData).subscribe((data:any)=>{
+        this.message = data.message;
+        if (data.token){
+          window.localStorage.setItem('toekn',data.token);
+
+        }
+        else {
+          this.invalidlogin=true;
+          alert(data.message);
+        }
+        
+      });
+
+
+    
+    }
 
 }
 
 
+
+function data(data: any, any: any) {
+  throw new Error('Function not implemented.');
+}
 

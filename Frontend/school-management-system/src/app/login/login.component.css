@@ -61,7 +61,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  background: #39393a;
+  background: #d5d5fa;
   padding:40px;
   text-align: center;
   border-radius: 10px;
@@ -77,7 +77,7 @@
   text-transform: uppercase;
 }
 .main-div{
-  background: #404041;
+  background: #fdfdfd;
 }
 .mat-form-field{
   color: rgb(71, 153, 4);

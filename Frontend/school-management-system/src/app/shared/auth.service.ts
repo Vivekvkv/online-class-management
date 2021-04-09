@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { map } from 'rxjs/operators'
 import { from, Observable } from 'rxjs';
 import { Signup } from'src/app/shared/signup';
+import { LoginComponent } from '../login/login.component';
 
 const httpOptions = {
   Headers: new HttpHeaders({
@@ -11,11 +12,16 @@ const httpOptions = {
   })
   
 };
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  baseUrl: string="http://127.0.0.1:8000/";
+  login(loginData: { username: any; password: any; }):Observable<Response> {
+    
+    return this._http.post<Response>(this.baseUrl,loginData)
+    
+  }
 
   constructor(private _http:HttpClient, ) { }
 
@@ -47,7 +53,8 @@ export class AuthService {
     })
   }
 
-  api_url:string ='http://127.0.0.1:8000/accounts/register/';
+  api_url:string ='http://127.0.0.1:8000/';
+ 
 
 
       // #Login FUNCTINALITY
@@ -62,7 +69,7 @@ export class AuthService {
       //     })
       //   );
       // }
-
+      
   register(Signup: Signup){
     const headers = { 'content-type': 'application/json'}  
 

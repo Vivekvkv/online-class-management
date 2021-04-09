@@ -6,12 +6,12 @@
          
         <form [formGroup]='authService.loginForm'  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <input matInput type="text" class="username"  placeholder="Username or Email" formControlName="username" id="username"
-               autocomplete="off">   
+               autocomplete="off" value="">   
               <div class="error" 
               *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Please enter username</div>
                    
               <input  class="password" placeholder="Password"  matInput [type]="hide ? 'password' : 'text'" 
-              FormControlName="password" autocomplete="off">
+              FormControlName="password" autocomplete="off" value=''>
                          
               <div class="error" 
               *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please enter password</div>
