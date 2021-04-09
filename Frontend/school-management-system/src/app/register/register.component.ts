@@ -80,7 +80,7 @@ export class RegisterComponent implements OnInit {
 
   Roles: any = ['Admin', 'Department', 'Faculty','Student'];
   hide = true;
-  get f (){
+  get  (){
     return this.service.form.controls;
   }
 

@@ -34,26 +34,26 @@ export class LoginComponent implements OnInit  {
              
               ) {}
   
-  ngOnInit(){
+    ngOnInit(){
     this.loginForm = this.formBuilder.group({
       username: ['',Validators.compose([Validators.required])],
       password:['',Validators.required]
-    })
-   }
+     })
+     }
   
 
-  openSnackBar() {
+   openSnackBar() {
     this._snackBar.openFromComponent(RegisterComponent, {
       duration: this.durationInSeconds * 1000,
     });
-  }
+    }
 
-  openDialog(){
+    openDialog(){
     this._dialog.open(RegisterComponent)
     const dialogRef = this._dialog.open(RegisterComponent);
     var data = dialogRef.close()
     
-  }
+     }
 
     register(){
     
@@ -61,18 +61,13 @@ export class LoginComponent implements OnInit  {
     
     }
     onSubmit(){
-      console.log(this.loginForm.value);
-      if (this.loginForm.invalid){
-        return ;
-      }
-      const loginData={
-        username: this.loginForm.controls.username.value,
-        password: this.loginForm.controls.password.value
-      }
-      this.api
+      this.service.register(this.service.form.value).subscribe(
+        data => console.log('sucesss', data),
+        error => console.log('error!', error),
 
+      
     
-    }
+      }
 
 }
 
