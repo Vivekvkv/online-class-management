@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl: string="http://127.0.0.1:8000/";
+  baseUrl: string="http://127.0.0.1:8000/accounts/login/";
   login(loginData: { username: any; password: any; }):Observable<Response> {
     
     return this._http.post<Response>(this.baseUrl,loginData)
@@ -53,7 +53,7 @@ export class AuthService {
     })
   }
 
-  api_url:string ='http://127.0.0.1:8000/';
+  api_url:string ='http://127.0.0.1:8000/accounts/register/';
  
 
 

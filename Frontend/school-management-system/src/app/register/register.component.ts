@@ -51,7 +51,7 @@ import { Signup } from'src/app/shared/signup';
   
           <mat-form-field class="example-full-width">
             <mat-label>Choose as role...</mat-label>
-            <mat-select formControlName='roles'>
+            <mat-select formControName='roles'>
               <mat-option  [value]="roles" *ngFor="let roles of Roles">{{roles}}
               </mat-option>
             </mat-select>

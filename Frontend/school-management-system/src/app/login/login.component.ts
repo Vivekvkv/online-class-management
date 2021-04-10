@@ -74,28 +74,30 @@ export class LoginComponent implements OnInit  {
    }
   
 
-  openSnackBar() {
-    this._snackBar.openFromComponent(RegisterComponent, {
-      duration: this.durationInSeconds * 1000,
-    });
-  }
+  // openSnackBar() {
+  //   this._snackBar.openFromComponent(RegisterComponent, {
+  //     duration: this.durationInSeconds * 1000,
+  //   });
+  // }
 
-  openDialog(){
-    this._dialog.open(RegisterComponent)
-    const dialogRef = this._dialog.open(RegisterComponent);
-    var data = dialogRef.close()
+  // openDialog(){
+  //   this._dialog.open(RegisterComponent)
+  //   const dialogRef = this._dialog.open(RegisterComponent);
+  //   var data = dialogRef.close()
     
-  }
+  // }
 
     register(){
     
       this.router.navigate(['register'], );
     
     }
+
+    
     onSubmit(){
       console.log(this.loginForm.value);
       if (this.loginForm.invalid){
-        return;
+        return console.log("There is some Validation Error!!!!.");
       }
       const loginData = {
         username:  this.loginForm.controls.username.value,
