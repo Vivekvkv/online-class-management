@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes  } from '@angular/router';
+import { DeshbordComponent } from './deshbord/deshbord.component';
 // import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+import { AuthGuard } from './_helpers/auth.guard';
 
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 
 import { RegisterComponent, DialogView } from './register/register.component';
 import { SignupComponent } from './signup/signup.component';
+import {AccountRoutingModule } from './auth/account-routing.module'
+
+const accountModule = () => import('./auth/account.module').then(x => x.AccountModule);
 
 const routes: Routes = [
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'account', loadChildren: accountModule },
 
-  {path:'login',component:LoginComponent, 
-  // children:[{
-  //   path: 'register', component:RegisterComponent}
-  // ]
-},
-  {path:'home',component:HomeComponent},
   {path:'signup',component:SignupComponent},
   {path:'register', component:RegisterComponent},
+  { path: '**', redirectTo: '' }
 
   
 ];
@@ -27,6 +28,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponent  = [RegisterComponent,LoginComponent,SignupComponent,DialogView,
+export const routingComponent  = [RegisterComponent,SignupComponent,DialogView,
 
 ];
