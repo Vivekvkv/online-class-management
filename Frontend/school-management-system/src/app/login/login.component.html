@@ -18,7 +18,7 @@
              
                        <input class="submit" [disabled]="loginForm.invalid"  (ngSubmit)="onSubmit()" 
                         placeholder="Login" type="submit">
-                        <div class="error" *ngIf="invalidlogin"></div>
+                        <div class="error" *ngIf="invalidlogin">invalid Username and password</div>
                
 
           </form>
