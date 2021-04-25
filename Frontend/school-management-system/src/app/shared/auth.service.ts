@@ -5,21 +5,28 @@ import { map } from 'rxjs/operators'
 import { from, Observable } from 'rxjs';
 import { Signup } from'src/app/shared/signup';
 import { LoginComponent } from '../login/login.component';
+import { TagContentType } from '@angular/compiler';
+import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
 
 const httpOptions = {
   Headers: new HttpHeaders({
-    'content-Type':'application/json'
+    'Content-Type':'application/json',
+    'Accept' : 'application/json',
+    
   })
+
   
 };
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+   headers = { 'content-type': 'application/json'}
   baseUrl: string="http://127.0.0.1:8000/accounts/login/";
-  login(loginData: { username: any; password: any; }):Observable<Response> {
+  login(loginData: { username:string; password: string; }):Observable<Response> {
     
-    return this._http.post<Response>(this.baseUrl,loginData)
+    return this._http.post<Response>( this.baseUrl,JSON.stringify(loginData),{'headers':this.headers})
     
   }
 
@@ -85,8 +92,10 @@ export class AuthService {
     // isExist(email:string):Observable<string>{
     //   return this._http.post<string>(this.getUrl('isExist'),{email})
     // }
+    
+    
 
-  }
+}
 
 
   

@@ -16,38 +16,7 @@ import { Subscriber, Observable } from 'rxjs';
 import { Signup } from'src/app/shared/signup';
 @Component({
   selector: 'app-login',
-  template: `
-     <div  class='main-div' >
-      
-    <mat-card class="box" >
-     <mat-label class="login">Login</mat-label>
-         
-        <form [formGroup]='authService.loginForm'  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <input matInput type="text" class="username"  placeholder="Username or Email" formControlName="username" id="username"
-               autocomplete="off">   
-              <div class="error" 
-              *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Please enter username</div>
-                   
-              <input  class="password" placeholder="Password"  matInput [type]="hide ? 'password' : 'text'" 
-              FormControlName="password" autocomplete="off">
-                         
-              <div class="error" 
-              *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Please enter password</div>
-             
-                       <input class="submit" [disabled]="loginForm.invalid"  (ngSubmit)="onSubmit()" 
-                        placeholder="Login" type="submit">
-                        <div class="error" *ngIf="invalidlogin"></div>
-               
-
-          </form>
-          
-    
-          
-
-   <button mat-stroked-button color="secondary" (click)="register()"  class='mat-form-field' >New user register here</button>
-          
-  
-   `,
+  templateUrl:'./login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit  {
@@ -64,13 +33,19 @@ export class LoginComponent implements OnInit  {
               private router:Router,
               public service:AuthService
              
-              ) {}
+              ) {
+              
+              }
   
   ngOnInit(){
     this.loginForm = this.formBuilder.group({
       username: ['',Validators.compose([Validators.required])],
       password:['',Validators.required]
     })
+  
+     
+    
+
    }
   
 
@@ -106,7 +81,7 @@ export class LoginComponent implements OnInit  {
       this.service.login(loginData).subscribe((data:any)=>{
         this.message = data.message;
         if (data.token){
-          window.localStorage.setItem('toekn',data.token);
+          window.localStorage.setItem('token',data.token);
 
         }
         else {
