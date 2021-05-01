@@ -10,6 +10,8 @@ import { FormControl, FormGroup, Validators,  } from '@angular/forms';
 
 @Injectable({ providedIn: 'root'})
 export class AuthService {
+
+  isUserLoggedIn: boolean = false;
   loginForm:FormGroup = new FormGroup({
     username: new FormControl('',Validators.required),
     password: new FormControl('',Validators.required)
@@ -33,8 +35,9 @@ export class AuthService {
         private router: Router,
         private http: HttpClient
   ) { 
-      this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')|| '{}'));
-      this.user = this.userSubject.asObservable();
+    this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+    this.user = this.userSubject.asObservable();
+
     }
 
 
@@ -56,10 +59,13 @@ export class AuthService {
 
   logout() {
     // remove user from local storage and set current user to null
-    // localStorage.removeItem('user');
-    // this.userSubject.next(null);
-    // this.router.navigate(['/account/login']);
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
+    this.router.navigate(['/account/login']);
 }
+
+
+//  Roustere which is complicaed thihg which other''s    J
 
 
 }

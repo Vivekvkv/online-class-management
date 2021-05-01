@@ -13,11 +13,12 @@ import {AccountRoutingModule } from './auth/account-routing.module'
 const accountModule = () => import('./auth/account.module').then(x => x.AccountModule);
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: '', component:HomeComponent},
+  { path: 'dashboard', component: DeshbordComponent, canActivate: [AuthGuard] },
   { path: 'account', loadChildren: accountModule },
 
   {path:'signup',component:SignupComponent},
-  {path:'register', component:RegisterComponent},
+  // {path:'register', component:RegisterComponent},
   { path: '**', redirectTo: '' }
 
   

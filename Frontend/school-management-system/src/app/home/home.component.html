@@ -1,2 +1,14 @@
-<h1 style="padding-left: 500px; color: rgb(248, 11, 11);">WORK IN PROGRESS ! TAKE DIVERSION</h1>
-<mat-spinner class="spiner"></mat-spinner>
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+     <div class="navbar-nav">
+         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+         <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+         <a class="nav-item nav-link" (click)="logout()">Logout</a>
+     </div>
+   </nav>
+   <h1> THIS IS HOME COMPONENT</h1>
+   <!-- main app container -->
+   <div class="app-container" [ngClass]="{ 'bg-light': user }">
+    <router-outlet></router-outlet>
+
+   </div>

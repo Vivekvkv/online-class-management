@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { AuthService } from '@app/_services/auth.service';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router:Router,
+    private auth:AuthService,
+
+  ) { 
+      if (this.auth.userValue){
+        this.router.navigate(['dashboard/'])
+      }
+  }
 
   ngOnInit(): void {
   }

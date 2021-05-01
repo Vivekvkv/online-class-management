@@ -43,25 +43,33 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     
-    this.submitted = true;
-    // this.alertService.clear();
+     this.submitted = true;
+    this.alertService.clear();
 
     if (this.form.invalid) {
       return;
-  }
-  this.loading = true;
-  this.authService.login(this.f.username.value, this.f.password.value)
-  .pipe(first())
-  .subscribe({
+                         }
+       this.loading = true;
+      this.authService.login(this.f.username.value, this.f.password.value)
+                       .pipe(first())
+                      .subscribe({
     next:() => {
-      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-      this.router.navigate(returnUrl)
-      this._snackBar.open("User Succesfully LogON!!!!")
+      const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
+      this.router.navigateByUrl(returnUrl)
+      this._snackBar.open("User Succesfully LogON!!!!","",{
+        duration:500, horizontalPosition:this.horizontalPosition,
+        verticalPosition:this.verticalPosition
+      })
     },
     error:error=>{
       
       this.alertService.error(error);
       this.loading = false;
+      this._snackBar.open("opps!! THere is some issue...","",{
+        duration:500, horizontalPosition:this.horizontalPosition,
+        verticalPosition:this.verticalPosition,
+      })
+
     //   this._snackBar.open("User email or password is Wrong!!!","",{
     // duration:900,
     // horizontalPosition: this.horizontalPosition,
