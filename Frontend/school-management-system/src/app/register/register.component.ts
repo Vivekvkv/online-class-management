@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators, AsyncValidatorFn, ValidationErrors, ValidatorFn,
   AbstractControl } from '@angular/forms';
-import { Router, Navigation } from'@angular/router'
  import { map } from 'rxjs/operators'
 import { DateAdapter } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,12 +9,6 @@ import { Subscriber, Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { AuthService } from '../shared/auth.service';
 import { Signup } from'src/app/shared/signup';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material/snack-bar';
-
 @Component({
   selector: 'app-register',
   template: `
@@ -78,16 +71,8 @@ import {
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  
-  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
-
   ravi:string="123";
-  constructor(private dialog:MatDialog, 
-              public service:AuthService, 
-              private _snackBar: MatSnackBar,
-              private router:Router) { }
+  constructor(private dialog:MatDialog, public service:AuthService) { }
 
   ngOnInit(): void {
     
@@ -99,33 +84,11 @@ export class RegisterComponent implements OnInit {
     return this.service.form.controls;
   }
 
-  loading = false;
-    submitted = false;
-    get f() { return this.service.form.controls; }
-
   onSubmit(){
-    this.submitted = true;
-
-    if (this.service.form.invalid){
-      return;
-    }
-
-    this.loading = true;
-    this.service.register(this.service.form.value)
-    .pipe(first()).subscribe({
-      next: () => {
-          this._snackBar.open('Registration Sucessfull!!', '',{
-            duration:5000, horizontalPosition:this.horizontalPosition, 
-            verticalPosition:this.verticalPosition,
-          });
-          this.router.navigate(['../login'])
-      },
-      error:error=>{
-        this._snackBar.open("Some Network Issue");
-        this.loading= false;
-      }
-    });
-   
+    this.service.register(this.service.form.value).subscribe(
+      data => console.log('sucesss', data),
+      error => console.log('error!', error)
+    );
   }
   // customAsyncValidator():AsyncValidatorFn{ 
   //   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> =>{

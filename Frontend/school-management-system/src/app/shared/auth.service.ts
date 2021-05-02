@@ -1,43 +1,37 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router'
 import { FormControl, FormGroup, Validators,  } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { map } from 'rxjs/operators'
-import { from, Observable, BehaviorSubject } from 'rxjs';
-import { Signup, User } from'src/app/shared/signup';
+import { from, Observable } from 'rxjs';
+import { Signup } from'src/app/shared/signup';
+import { LoginComponent } from '../login/login.component';
+import { TagContentType } from '@angular/compiler';
+import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
 
 const httpOptions = {
   Headers: new HttpHeaders({
-    'content-Type':'application/json'
+    'Content-Type':'application/json',
+    'Accept' : 'application/json',
+    
   })
+
   
 };
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+   headers = { 'content-type': 'application/json'}
   baseUrl: string="http://127.0.0.1:8000/accounts/login/";
- 
- 
- 
-  // private userSubject: BehaviorSubject<User>;
-  //   public user: Observable<User>;
-  
+  login(loginData: { username:string; password: string; }):Observable<Response> {
+    
+    return this._http.post<Response>( this.baseUrl,JSON.stringify(loginData),{'headers':this.headers})
+    
+  }
 
-  constructor(private _http:HttpClient,
-                private _route:Router,
-    ) {
-      // this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem(key*()));
-      // this.user = this.userSubject.asObservable();
-     }
+  constructor(private _http:HttpClient, ) { }
 
-  //   public get userValue(): User {
-  //     return this.userSubject.value;
-  // }
- 
-
- 
- 
   form :FormGroup = new FormGroup({
     $key: new FormControl(null),
     first_name: new FormControl('',Validators.required),
@@ -98,8 +92,10 @@ export class AuthService {
     // isExist(email:string):Observable<string>{
     //   return this._http.post<string>(this.getUrl('isExist'),{email})
     // }
+    
+    
 
-  }
+}
 
 
   
