@@ -8,10 +8,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from '../app/_helpers/error.interceptor';
+import { JwtInterceptor } from '../app/_helpers/jwt.interceptor';
+
 import { MaterialModule } from './material/material.module';
 import { HomeComponent } from './home/home.component';
-
+import { DeshbordComponent } from './deshbord/deshbord.component';
+// import { LoginComponent } from './auth/login/login.component';
+// import { RegisterComponent } from './auth/register/register.component';
+// import { LayoutComponent } from './auth/layout.component';
+import { AlertComponent } from './_components/alert.component';
+import { AccountModule } from './auth/account.module'
 
 
 
@@ -27,18 +35,23 @@ const modules = [
 ]
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
     routingComponent,
-    HomeComponent,    
+    HomeComponent,
+    DeshbordComponent,
+    // LayoutComponent,
+    AlertComponent,
   ],
-  imports: [...modules],
+  imports: [...modules, BrowserAnimationsModule],
 
 
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

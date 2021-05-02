@@ -13,12 +13,11 @@ class ProfileView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
-        Content = {
-
+        content = {
             'user': str(request.user),  # `django.contrib.auth.User` instance.
             'auth': str(request.auth),  # None
         }
-        return Response(Content)
+        return Response(content)
 
 
 class RegisterView(generics.CreateAPIView):
