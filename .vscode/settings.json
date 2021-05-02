@@ -9,6 +9,5 @@
     "python.autoComplete.addBrackets": true,
     "emmet.showSuggestionsAsSnippets": true,
     "python.formatting.provider": "yapf",
-    "git.ignoreLimitWarning": true,
-    "python.pythonPath": "C:\\Users\\sonu kumbhkar\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+    "git.ignoreLimitWarning": true
 }
