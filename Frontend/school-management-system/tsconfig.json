@@ -1,7 +1,7 @@
 
 {
-  "compileOnSave": false,
-  "compilerOptions": {
+    "compileOnSave": false,
+    "compilerOptions": {
       "baseUrl": "./",
       "outDir": "./dist/out-tsc",
       "forceConsistentCasingInFileNames": true,
@@ -17,12 +17,19 @@
       "target": "es2015",
       "module": "es2020",
       "lib": [
-          "es2018",
-          "dom"
+        "es2018",
+        "dom"
       ],
       "paths": {
           "@app/*": ["src/app/*"],
           "@environments/*": ["src/environments/*"]
       }
-  },
-}
+       
+    },
+    "angularCompilerOptions": {
+      "enableI18nLegacyMessageIdFormat": false,
+      "strictInjectionParameters": true,
+      "strictInputAccessModifiers": true,
+      "strictTemplates": true
+    }
+  }
