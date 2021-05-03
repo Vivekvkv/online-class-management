@@ -10,6 +10,9 @@ urlpatterns = [
           path('register/', views.RegisterView.as_view(), name='auth_register'),
           path('login/',views.MyObtainTokenPairView.as_view(), name='token_obtain_pair'),
           
+          
+          
+          
 
 
 ]
