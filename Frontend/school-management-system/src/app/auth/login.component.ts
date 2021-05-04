@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
-
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { AuthService } from '@app/_services/auth.service';
 
 import {
@@ -57,8 +57,9 @@ export class LoginComponent implements OnInit {
       const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
       this.router.navigateByUrl(returnUrl)
       this._snackBar.open("User Succesfully LogON!!!!","",{
-        duration:500, horizontalPosition:this.horizontalPosition,
+        duration:1000, horizontalPosition:this.horizontalPosition,
         verticalPosition:this.verticalPosition
+        
       })
     },
     error:error=>{
@@ -66,7 +67,7 @@ export class LoginComponent implements OnInit {
       this.alertService.error(error);
       this.loading = false;
       this._snackBar.open("opps!! THere is some issue...","",{
-        duration:500, horizontalPosition:this.horizontalPosition,
+        duration:1000, horizontalPosition:this.horizontalPosition,
         verticalPosition:this.verticalPosition,
       })
 
@@ -81,3 +82,5 @@ export class LoginComponent implements OnInit {
   }
 
 }
+
+

@@ -6,6 +6,7 @@ import { AuthGuard } from './_helpers/auth.guard';
 
 import { HomeComponent } from './home/home.component';
 
+
 import { RegisterComponent, DialogView } from './register/register.component';
 import { SignupComponent } from './signup/signup.component';
 import {AccountRoutingModule } from './auth/account-routing.module'
@@ -28,7 +29,9 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+}
 export const routingComponent  = [RegisterComponent,SignupComponent,DialogView,
 
 ];
