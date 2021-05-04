@@ -1,26 +1,30 @@
 from django.shortcuts import render
-from django.http.response import StreamingHttpResponse
+import cv2
+from django.http import HttpResponse,StreamingHttpResponse,HttpResponseServerError
+from django.views.decorators import gzip
+import time
+from django.http import HttpResponse
 
-import cv2 , os , urllib.request
-import numpy as np
-from django.conf import settings
 
-# Create your views here.
 def index(request):
+    
     return render(request,'index.html')
+    
 
-def gen(request):
-    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-    while(True):
-        success , image = cap.read()
-        cv2.flip(image,1)
-        cv2.imshow('Live video streaming',image)
-        
-        if cv2.waitKey(1)& 0xFF==ord('q'):
-            break
-
-    cap.release()
-    cv2.destroyAllWindows()
+def get_frame():
+    camera = cv2.VideoCapture(0)
+    while True:
+        ret,img = camera.read()
+        img= cv2.flip(img, 1)
+        imencdode = cv2.imencode('.jpeg', img)[1]
+        stringData = imencdode.tostring()
+        yield(b'--frame\r\n'b'Content-Type: text/plain\r\n\r\n'+stringData+b'\r\n')
+    del(camera)
+def dynamic_stream(request,stream_path='video'):
+    try:
+        return StreamingHttpResponse(get_frame(),content_type='multipart/x-mixed-replace;boundary=frame')
+    except:
+        return "errror"
 
 
 
